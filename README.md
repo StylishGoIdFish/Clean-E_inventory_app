@@ -1,3 +1,4 @@
 # Clean-E_inventory_app
-This is the repository for the Inventory Management app for Clean-E
 ---
+## Description
+Hi! Welcome to the Inventory Management System (IMS)! This is coded mainly in Java and is a 
