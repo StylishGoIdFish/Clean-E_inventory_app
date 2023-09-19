@@ -48,23 +48,18 @@ public class saveAndTakeData {
 
         String[] bruh = new String[0];
 
-        try {
-            reader = new Scanner(fileName);
+        reader = new Scanner(fileName);
 
-            while (reader.hasNextLine()){
-                String fullRow = reader.nextLine();
-                String[] rowContents = fullRow.split(",");
-                if (rowContents[3].equals(OrderID)){
-                    reader.close();
-                    return rowContents;
-                }
+        while (reader.hasNextLine()){
+            String fullRow = reader.nextLine();
+            String[] rowContents = fullRow.split(",");
+            if (rowContents[3].equals(OrderID)){
+                reader.close();
+                return rowContents;
             }
-
         }
-        catch (FileNotFoundException e) {
-            System.out.print("File has not been found! It has been moved or deleted!");
 
-        }
+
         System.out.println("Order: "+ OrderID+ " Does not exist." );
         return bruh;
     }
