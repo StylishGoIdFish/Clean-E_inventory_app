@@ -2,9 +2,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class saveAndTakeData {
-    private final File fileName = new File("DATA.csv");;
-    private Scanner reader;
+    private static final File fileName = new File("DATA.csv");;
+    private static Scanner reader;
 
     /**
      * USE-CASE: This method is used when we want to collect all records of a specific type of item
@@ -66,19 +67,20 @@ public class saveAndTakeData {
 
     /**
      * USE-CASE: When you want to find how many of an item is on hand
-     * @param OrderID - This variable is ID of the order we want to find
+     * @param itemType - This variable is item we want to find
      * @return - returns an Integer object
      * @throws FileNotFoundException - Throws when the DATA.csv file is missing
      */
-    public Integer countQuantity(String OrderID) throws FileNotFoundException {
+    public static Integer countQuantity(String itemType) throws FileNotFoundException {
         reader = new Scanner(fileName);
         int quantity = 0;
         while (reader.hasNextLine()) {
             String fullRow = reader.nextLine();
             String[] rowContents = fullRow.split(",");
-            if (rowContents[3].equals(OrderID))
+            if (rowContents[2].equals(itemType))
                 quantity += Integer.parseInt(rowContents[2]);
         }
         return quantity;
     }
+
 }
