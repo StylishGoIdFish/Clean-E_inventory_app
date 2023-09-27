@@ -1,12 +1,12 @@
 import java.io.FileNotFoundException;
 
-public class inventroyItem {
+public class InventoryItem {
     private String time;
     private String itemType;
     private Integer quantityAddedInOrder;
     private Integer orderID;
 
-    public inventroyItem(String[] rawData){
+    public InventoryItem(String[] rawData){
         time = rawData[0];
         itemType = rawData[1];
         quantityAddedInOrder = Integer.parseInt(rawData[2]);

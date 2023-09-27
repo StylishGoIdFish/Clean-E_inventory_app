@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class saveAndTakeData {
-    private static final File fileName = new File("DATA.csv");;
+    private static final File fileName = new File("sourceFiles\\DATA.csv");;
     private static Scanner reader;
 
     /**
