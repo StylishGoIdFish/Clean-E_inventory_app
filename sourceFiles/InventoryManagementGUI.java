@@ -12,7 +12,7 @@ public class InventoryManagementGUI extends JFrame {
     private JTextField timeField, typeField, quantityField, orderIDField;
     private JTextArea displayArea;
     private saveAndTakeData dataHandler;
-    private JTabbedPane tabbedPane;
+    private JTabbedPane tabbedPane;;
 
     public InventoryManagementGUI() {
         super("Inventory Management System");
@@ -60,6 +60,9 @@ public class InventoryManagementGUI extends JFrame {
         tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Add Item", inputPanel);
         tabbedPane.addTab("View Items", scrollPane);
+        JPanel inventoryInfoPanel = new InventoryInfoTab();
+        tabbedPane.addTab("Inventory Info", inventoryInfoPanel);
+
 
         add(tabbedPane, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
