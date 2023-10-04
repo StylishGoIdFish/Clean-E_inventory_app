@@ -13,7 +13,7 @@ public class saveAndTakeData {
      * @throws FileNotFoundException - Throws when the DATA.csv file is missing
      * @return - function returns an ArrayList of with a String[] as each element. Each element represents 1 row from DATA.csv
      */
-    public ArrayList<String[]> takeDataUsingType(String Choice) throws FileNotFoundException{
+    public ArrayList<String[]> takeDataUsingType(String Choice){
         ArrayList<String[]> returnEntries = new ArrayList<>();
 
         try {
