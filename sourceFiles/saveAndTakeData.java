@@ -10,7 +10,6 @@ public class saveAndTakeData {
     /**
      * USE-CASE: This method is used when we want to collect all records of a specific type of item
      * @param Choice - This variable the type of item we want to find
-     * @throws FileNotFoundException - Throws when the DATA.csv file is missing
      * @return - function returns an ArrayList of with a String[] as each element. Each element represents 1 row from DATA.csv
      */
     public ArrayList<String[]> takeDataUsingType(String Choice){
@@ -77,7 +76,7 @@ public class saveAndTakeData {
         while (reader.hasNextLine()) {
             String fullRow = reader.nextLine();
             String[] rowContents = fullRow.split(",");
-            if (rowContents[2].equals(itemType))
+            if (rowContents[1].equals(itemType))
                 quantity += Integer.parseInt(rowContents[2]);
         }
         return quantity;

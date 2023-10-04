@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class InventoryInfoTab extends JPanel {
     private JTextField textField1, textField2;
@@ -34,12 +35,14 @@ public class InventoryInfoTab extends JPanel {
         buttonOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String text = textField1.getText();
-
-                dataHandler.takeDataUsingOrderID(text);
-
-
-
-                displayArea.append("Field 1: " + text + "\n");
+                try {
+                    String[] entry = dataHandler.takeDataUsingOrderID(text);
+                    InventoryItem returnItem = new InventoryItem(entry);
+                    displayArea.append("---ORDER FOUND--- " + returnItem.toString() + "\n");
+                }
+                catch (FileNotFoundException error) {
+                    error.printStackTrace();
+                }
                 textField1.setText("");
             }
         });
@@ -47,7 +50,14 @@ public class InventoryInfoTab extends JPanel {
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String text = textField2.getText();
-                displayArea.append("Field 2: " + text + "\n");
+
+                ArrayList<String[]> entries = dataHandler.takeDataUsingType(text);
+
+                for (String[] entry : entries){
+                    InventoryItem returnItem = new InventoryItem(entry);
+                    displayArea.append("---ORDER FOUND--- " + returnItem.toString() + "\n");
+                }
+
                 textField2.setText("");
             }
         });

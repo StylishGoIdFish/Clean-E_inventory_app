@@ -111,8 +111,10 @@ public class InventoryManagementGUI extends JFrame {
             int quantity = Integer.parseInt(quantityField.getText());
             int orderID = Integer.parseInt(orderIDField.getText());
 
+            String user = usernameField.getText();
+
         // Create a new inventory item and add it to the CSV file
-            String[] rawData = {time, type, String.valueOf(quantity), String.valueOf(orderID)};
+            String[] rawData = {time, type, String.valueOf(quantity), String.valueOf(orderID), user};
             saveData(rawData);
 
         // Clear input fields
