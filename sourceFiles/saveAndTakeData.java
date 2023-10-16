@@ -44,18 +44,19 @@ public class saveAndTakeData {
      * @return - function returns an Array of type String[]. Each element represents an attribute of the order
      * @throws FileNotFoundException - Throws when the DATA.csv file is missing
      */
-    public String[] takeDataUsingOrderID(String OrderID) throws FileNotFoundException{
+    public MyPairedResult takeDataUsingOrderID(String OrderID) throws FileNotFoundException{
 
-        String[] bruh = new String[0];
+        MyPairedResult bruh = new MyPairedResult(new String[0], 0);
 
         reader = new Scanner(fileName);
-
+        int rowNum = 0;
         while (reader.hasNextLine()){
+            rowNum += 1;
             String fullRow = reader.nextLine();
             String[] rowContents = fullRow.split(",");
             if (rowContents[3].equals(OrderID)){
                 reader.close();
-                return rowContents;
+                return new MyPairedResult(rowContents,rowNum);
             }
         }
 
@@ -82,4 +83,21 @@ public class saveAndTakeData {
         return quantity;
     }
 
+}
+final class MyPairedResult {
+    private final String[] first;
+    private final int second;
+
+    public MyPairedResult(String[] first, int second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public String[] getFirst() {
+        return first;
+    }
+
+    public int getSecond() {
+        return second;
+    }
 }

@@ -36,7 +36,7 @@ public class InventoryInfoTab extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String text = textField1.getText();
                 try {
-                    String[] entry = dataHandler.takeDataUsingOrderID(text);
+                    String[] entry = (dataHandler.takeDataUsingOrderID(text)).getFirst();
                     InventoryItem returnItem = new InventoryItem(entry);
                     displayArea.append("---ORDER FOUND--- " + returnItem.toString() + "\n");
                 }

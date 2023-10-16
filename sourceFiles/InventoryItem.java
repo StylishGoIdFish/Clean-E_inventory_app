@@ -33,6 +33,10 @@ public class InventoryItem {
         return quantityAddedInOrder;
     }
 
+    public void setQuantityAddedInOrder( Integer input){
+        quantityAddedInOrder = input;
+    }
+
     public Integer getTotalQuantity() throws FileNotFoundException {
         return saveAndTakeData.countQuantity(this.getType());
     }
