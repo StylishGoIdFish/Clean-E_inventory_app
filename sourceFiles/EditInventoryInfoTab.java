@@ -11,6 +11,7 @@ public class EditInventoryInfoTab extends JPanel {
 
     private InventoryItem editable;
 
+    private Integer rowNum;
     private saveAndTakeData dataHandler = new saveAndTakeData();
     public EditInventoryInfoTab() {
         setLayout(new BorderLayout());
@@ -41,36 +42,11 @@ public class EditInventoryInfoTab extends JPanel {
 
                 if (input[0].equals("QUANTITY")) {
                     editable.setQuantityAddedInOrder(Integer.parseInt(input[1]));
-                    displayArea.append("CHANGED QUANTITY ADDED IN ORDER #" + editable.getID() + "TO " + input[1]);
+                    displayArea.append("CHANGED QUANTITY ADDED IN ORDER #" + editable.getID() + " TO " + input[1]);
                 }
 
                 // time to EDIIIIITTTT
-
-                String temp = "tempFile.txt";
-                File oldFile = new File("DATA.csv");
-                File tempFile = new File("tempFile.txt");
-
-
-                try{
-
-                    FileWriter fw = new FileWriter(tempFile, true);
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    PrintWriter pw = new PrintWriter(bw);
-
-                    Scanner scan = new Scanner(oldFile);
-
-                    while (scan.hasNextLine()){
-
-                        if (scan.nextLine().split(",")[3].equals(editable.getID().toString())){
-                            pw.println(editable.getTime() + "," + editable.getType() + "," + editable.getOrderQuantity()+ "," + editable.getID(), )
-                        }//START HERE
-                        else{
-                            pw.println(scan.nextLine());
-                        }
-                    }
-                }
-                catch(Exception ex){}
-
+                dataHandler.editLineInCSV("sourceFiles\\DATA.csv", rowNum, editable.toString());
 
                 textField1.setText("");
 
@@ -83,7 +59,7 @@ public class EditInventoryInfoTab extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try{
                     editable = new InventoryItem(dataHandler.takeDataUsingOrderID(orderField.getText()).getFirst());
-
+                    rowNum = dataHandler.takeDataUsingOrderID(orderField.getText()).getSecond();
                     displayArea.append("EDITABLE ORDER FOUND; YOU CAN NOW EDIT CONTENTS OF ORDER");
                 }
                 catch (FileNotFoundException p){

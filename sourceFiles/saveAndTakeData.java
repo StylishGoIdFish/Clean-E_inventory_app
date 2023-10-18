@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -51,13 +52,13 @@ public class saveAndTakeData {
         reader = new Scanner(fileName);
         int rowNum = 0;
         while (reader.hasNextLine()){
-            rowNum += 1;
             String fullRow = reader.nextLine();
             String[] rowContents = fullRow.split(",");
             if (rowContents[3].equals(OrderID)){
                 reader.close();
                 return new MyPairedResult(rowContents,rowNum);
             }
+            rowNum += 1;
         }
 
 
@@ -83,6 +84,48 @@ public class saveAndTakeData {
         return quantity;
     }
 
+    /**
+     * Edit a line in a CSV file.
+     *
+     * @param fileName   The name of the CSV file.
+     * @param lineNumber The line number to edit (0-based index).
+     * @param newData    The new data for the line as a string.
+     * @return True if the line was successfully edited, false otherwise.
+     */
+    public static boolean editLineInCSV(String fileName, int lineNumber, String newData) {
+        try {
+            File inputFile = new File(fileName);
+            File tempFile = new File("temp.csv");
+
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            String currentLine;
+            int lineCount = 0;
+
+            while ((currentLine = reader.readLine()) != null) {
+                if (lineCount == lineNumber) {
+                    writer.write(newData);
+                } else {
+                    writer.write(currentLine);
+                }
+                writer.newLine();
+                lineCount++;
+            }
+
+            reader.close();
+            writer.close();
+
+            if (inputFile.delete() && tempFile.renameTo(inputFile)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 final class MyPairedResult {
     private final String[] first;

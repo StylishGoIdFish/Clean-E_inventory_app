@@ -74,6 +74,9 @@ public class InventoryManagementGUI extends JFrame {
         JPanel inventoryInfoPanel = new InventoryInfoTab();
         tabbedPane.addTab("Inventory Info", inventoryInfoPanel);
 
+        JPanel editInventoryTab = new EditInventoryInfoTab();
+        tabbedPane.addTab("Edit Inventory", editInventoryTab);
+
         // Create a login screen and add it as the first tab
         //LoginScreen loginScreen = new LoginScreen(tabbedPane);
         //tabbedPane.addTab("Login", loginScreen);
