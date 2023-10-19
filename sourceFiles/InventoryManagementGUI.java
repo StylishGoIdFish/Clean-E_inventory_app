@@ -1,18 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
+
 
 public class InventoryManagementGUI extends JFrame {
 
     //Declaring text fields and buttons for the UI
-    private JButton addButton,  refreshButton;
-    private JTextField usernameField, passwordField;
-    private JTextField timeField, typeField, quantityField, orderIDField;
-    private JTextArea displayArea;
-    private saveAndTakeData dataHandler;
-    private JTabbedPane tabbedPane;;
+    private final JButton addButton;
+    private final JTextField usernameField;
+    private final JTextField passwordField;
+    private final JTextField timeField;
+    private final JTextField typeField;
+    private final JTextField quantityField;
+    private final JTextField orderIDField;
+    private final JTextArea displayArea;
+    ;
 
     public InventoryManagementGUI() {
 
@@ -23,7 +25,7 @@ public class InventoryManagementGUI extends JFrame {
         setLayout(new BorderLayout());
 
         //Sets up the dataHandler using the saveAndTakeData class
-        dataHandler = new saveAndTakeData();
+        saveAndTakeData dataHandler = new saveAndTakeData();
 
         //Creates a input panel to put all of our fields to make the things look nice!
         JPanel inputPanel = new JPanel(new GridLayout(4, 2));
@@ -67,7 +69,7 @@ public class InventoryManagementGUI extends JFrame {
         JScrollPane scrollPane = new JScrollPane(displayArea);
 
         // Create a tabbed pane
-        tabbedPane = new JTabbedPane();
+        JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Add Item", inputPanel);
         tabbedPane.addTab("View Items", scrollPane);
 
@@ -89,17 +91,9 @@ public class InventoryManagementGUI extends JFrame {
 
 
 
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                addToInventory();
-            }
-        });
+        addButton.addActionListener(e -> addToInventory());
 
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                authenticateUser();
-            }
-        });
+        loginButton.addActionListener(e -> authenticateUser());
     }
 
     /**
