@@ -38,7 +38,7 @@ public class InventoryInfoTab extends JPanel {
                 try {
                     String[] entry = (dataHandler.takeDataUsingOrderID(text)).getFirst();
                     InventoryItem returnItem = new InventoryItem(entry);
-                    displayArea.append("---ORDER FOUND--- " + returnItem.toString() + "\n");
+                    displayArea.append("---ORDER FOUND-- " + returnItem.toString() + "\n");
                 }
                 catch (FileNotFoundException error) {
                     error.printStackTrace();

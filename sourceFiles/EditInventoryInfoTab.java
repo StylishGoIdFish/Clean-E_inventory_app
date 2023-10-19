@@ -46,7 +46,7 @@ public class EditInventoryInfoTab extends JPanel {
                 }
 
                 // time to EDIIIIITTTT
-                dataHandler.editLineInCSV("sourceFiles\\DATA.csv", rowNum, editable.toString());
+                dataHandler.editLineInCSV("DATA.csv", rowNum, editable.toString());
 
                 textField1.setText("");
 

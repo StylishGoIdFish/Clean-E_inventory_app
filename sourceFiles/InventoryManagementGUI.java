@@ -158,7 +158,7 @@ public class InventoryManagementGUI extends JFrame {
     }
 
     private void saveData (String[] data) {
-        try (FileWriter writer = new FileWriter("sourceFiles\\DATA.csv", true);
+        try (FileWriter writer = new FileWriter("DATA.csv", true);
              PrintWriter printWriter = new PrintWriter(writer)) {
             printWriter.println(String.join(",", data));
         } catch (IOException e) {

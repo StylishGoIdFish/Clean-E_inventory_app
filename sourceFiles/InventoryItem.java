@@ -47,8 +47,8 @@ public class InventoryItem {
 
     @Override
     public String toString() {
-        try{
-        return getTime() + "," + getType() + "," + getID() + "," + getOrderQuantity() + "," + getTotalQuantity().toString() + ","+ getPerson();
+        try{getTotalQuantity().toString();
+        return getTime() + "," + getType() + "," + getOrderQuantity() + "," + getID() + "," +  getPerson();
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
