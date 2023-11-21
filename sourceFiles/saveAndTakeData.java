@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class saveAndTakeData {
-    private static final File fileName = new File("sourceFiles\\DATA.csv");;
+    private static final File fileName = new File("DATA.csv");;
     private static Scanner reader;
 
     /**
@@ -81,50 +81,60 @@ public class saveAndTakeData {
             if (rowContents[1].equals(itemType))
                 quantity += Integer.parseInt(rowContents[2]);
         }
+        reader.close();
         return quantity;
+
+
     }
 
     /**
      * Edit a line in a CSV file.
      *
-     * @param fileName   The name of the CSV file.
+     * @param oldfileName   The name of the CSV file.
      * @param lineNumber The line number to edit (0-based index).
      * @param newData    The new data for the line as a string.
      * @return True if the line was successfully edited, false otherwise.
      */
-    public static boolean editLineInCSV(String fileName, int lineNumber, String newData) {
-        try {
-            File inputFile = new File(fileName);
-            File tempFile = new File("temp.csv");
+    public static void editLineInCSV(String oldfileName, int lineNumber, String newData) {
+        String tempFile = "temp.txt";
+        File oldFile = new File(oldfileName);
+        File newFile = new File(tempFile);
 
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+        try {
+            FileWriter fw = new FileWriter(newFile, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            BufferedReader reader = new BufferedReader(new FileReader(oldFile));
 
             String currentLine;
             int lineCount = 0;
-
-            while ((currentLine = reader.readLine()) != null) {
-                if (lineCount == lineNumber) {
-                    writer.write(newData);
-                } else {
-                    writer.write(currentLine);
+            while ((currentLine = reader.readLine()) != null){
+                if (lineCount == lineNumber){
+                    pw.write(newData+"\n");
                 }
-                writer.newLine();
+                else{
+                    pw.write(currentLine+"\n");
+                }
                 lineCount++;
             }
 
             reader.close();
-            writer.close();
+            pw.flush();
+            pw.close();
+            bw.close();
+            fw.close();
 
-            if (inputFile.delete() && tempFile.renameTo(inputFile)) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+            System.out.println(oldFile.delete());
+            File dump = new File(oldfileName);
+            newFile.renameTo(dump);
+
         }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Error!");
+        }
+
     }
 }
 final class MyPairedResult {

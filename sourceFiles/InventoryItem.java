@@ -21,8 +21,16 @@ public class InventoryItem {
         return time;
     }
 
+    public void setTime(String time){
+        this.time = time;
+    }
+
     public String getType(){
         return itemType;
+    }
+
+    public void setType(String type){
+        this.itemType = type;
     }
 
     public Integer getID(){

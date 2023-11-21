@@ -37,9 +37,19 @@ public class EditInventoryInfoTab extends JPanel {
             String text = textField1.getText();
             String[] input =text.toUpperCase().split(" ");
 
-            if (input[0].equals("QUANTITY")) {
-                editable.setQuantityAddedInOrder(Integer.parseInt(input[1]));
-                displayArea.append("CHANGED QUANTITY ADDED IN ORDER #" + editable.getID() + " TO " + input[1]);
+            switch (input[0]) {
+                case ("QUANTITY"):
+                    editable.setQuantityAddedInOrder(Integer.parseInt(input[1]));
+                    displayArea.append("CHANGED QUANTITY ADDED IN ORDER #" + editable.getID() + " TO " + input[1] + "\n");
+                    break;
+                case ("TIME"):
+                    editable.setTime(input[1]);
+                    displayArea.append("CHANGED TIME ADDED FOR ORDER #" + editable.getID() + " TO " + input[1] + "\n");
+                    break;
+                case ("TYPE"):
+                    editable.setType(input[1]);
+                    displayArea.append("CHANGED TYPE ORDER #" + editable.getID() + " TO " + input[1] + "\n");
+                    break;
             }
 
             // time to EDIIIIITTTT
@@ -54,7 +64,7 @@ public class EditInventoryInfoTab extends JPanel {
             try{
                 editable = new InventoryItem(dataHandler.takeDataUsingOrderID(orderField.getText()).getFirst());
                 rowNum = dataHandler.takeDataUsingOrderID(orderField.getText()).getSecond();
-                displayArea.append("EDITABLE ORDER FOUND; YOU CAN NOW EDIT CONTENTS OF ORDER");
+                displayArea.append("EDITABLE ORDER FOUND; YOU CAN NOW EDIT CONTENTS OF ORDER\n");
             }
             catch (FileNotFoundException p){
                 p.printStackTrace();
